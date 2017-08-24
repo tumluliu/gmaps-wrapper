@@ -8,7 +8,6 @@ import os
 import logging.config
 import json
 import requests
-from settings import GMAPS_KEY
 from flask import Flask, request
 from flask_cors import CORS
 
