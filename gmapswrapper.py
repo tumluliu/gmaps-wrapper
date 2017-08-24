@@ -32,9 +32,10 @@ CORS(app)
 GOOGLE_MAPS_URL_TEMPLATE = "https://maps.googleapis.com/maps/api/directions/json"
 
 
-@app.route("/")
+@app.route("/gmapswrapper")
 def getGoogleMapsDirections():
-    logger.debug(request.query_string)
+    logger.debug(str(request.url))
+    logger.debug(str(request.query_string))
     payload = {
         "origin": request.args.get("origin"),
         "destination": request.args.get("destination"),
@@ -42,6 +43,7 @@ def getGoogleMapsDirections():
         "key": request.args.get("key")
     }
     r = requests.get(GOOGLE_MAPS_URL_TEMPLATE, params=payload)
+    logger.debug(r.status_code)
     return r.content
 
 
